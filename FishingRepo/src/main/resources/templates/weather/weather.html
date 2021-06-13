@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head th:replace="layouts :: header"></head>
+<body>
+
+	<!-- Navbar menu located in layouts -->
+	<nav th:replace="layouts :: navbar"></nav>
+<p th:text="${locationCoordinates.current}"></p>
+</body>
+</html>
