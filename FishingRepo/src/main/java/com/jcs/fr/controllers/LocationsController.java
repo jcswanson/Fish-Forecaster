@@ -20,7 +20,7 @@ public class LocationsController {
 									@RequestParam Double lon) {
 		OpenWeatherResponse locationWeather = weatherService.getWeatherData(lat, lon);
 		model.addAttribute("weatherData", locationWeather);
-		
+	
 		return "locations/location";
 	}
 	

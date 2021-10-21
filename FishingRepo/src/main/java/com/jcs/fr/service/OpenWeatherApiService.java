@@ -1,11 +1,15 @@
 package com.jcs.fr.service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import com.jcs.fr.response.CurrentWeather;
 import com.jcs.fr.response.OpenWeatherResponse;
 
 @Service
@@ -19,14 +23,22 @@ public class OpenWeatherApiService {
 	public OpenWeatherResponse getWeatherData(Double lat, Double lon) {
 		String baseUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=" + 
 							lat + "&lon=" + lon + "&exclude=minutely, hourly, daily&units="+ 
-							UNITS[0] + "&appid="+ OW_API_KEY;    
-		ResponseEntity<OpenWeatherResponse> response = rt.getForEntity(baseUrl, OpenWeatherResponse.class);
+							UNITS[0] + "&appid="+ OW_API_KEY;
+		
+		ResponseEntity<OpenWeatherResponse> response = rt.getForEntity(baseUrl, OpenWeatherResponse.class);	
 		MediaType contentType = response.getHeaders().getContentType();
 		HttpStatus statusCode = response.getStatusCode();  
 		System.out.println(contentType.toString());
 		System.out.println(statusCode.toString());
 		System.out.println(response.getBody().toString());
 		return response.getBody();
+	}
+	
+	public static String convertUnixToHour(int sunrise){
+	    Date date = new Date(sunrise* 1000L);
+	    SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+	    String formatted = sdf.format(date);
+	    return formatted;
 	}
 	
 }
