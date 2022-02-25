@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/FishingRepo/FishingRepo.iml" filepath="$PROJECT_DIR$/FishingRepo/FishingRepo.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/fishbite-repo.iml" filepath="$PROJECT_DIR$/.idea/fishbite-repo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Fish-Forecaster.iml" filepath="$PROJECT_DIR$/.idea/Fish-Forecaster.iml" />
+      <module fileurl="file://$PROJECT_DIR$/FishingRepo/FishForecaster.iml" filepath="$PROJECT_DIR$/FishingRepo/FishForecaster.iml" />
     </modules>
   </component>
 </project>

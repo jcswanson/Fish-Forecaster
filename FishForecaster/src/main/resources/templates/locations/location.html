@@ -1,0 +1,121 @@
+
+<html xmlns:th="http://thymeleaf.org">
+<head th:replace="layouts :: header">
+
+
+<link rel="stylesheet" type="text/css" th:ref="@{/css/style.css}" />
+
+
+</head>
+
+<body>
+
+	<!-- Navbar menu located in layouts -->
+	<nav th:replace="layouts :: navbar"></nav>
+
+
+<div class="container" th:object="${weatherData}">
+
+	<div class="alert alert-danger" role="alert" th:each=" alert : *{alerts}">
+		<span th:utext = "${alert.senderName}"> NO ALERTS</span>
+		<span th:utext = "${alert.event}"> </span>
+		<span th:utext = "${alert.startTime}"> </span>
+		<span th:utext = "${alert.endTime}"> </span>
+		<span th:utext = "${alert.description}"> </span>
+	</div>
+		<div class="row" >
+			<div class="col-md-6">
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item">Latitude: <a th:text="*{lat}"
+						id="lat"></a></li>
+					<li class="list-group-item">Longitude: <a th:text="*{lon}"
+						id="lon"></a></li>
+					<li class="list-group-item">Timezone: <a th:text="*{timezone}"></a></li>
+
+					<li class="list-group-item">Sunrise: <a
+						th:text="*{current.sunrise}"></a></li>
+					<li class="list-group-item">Sunset: <a
+						th:text="*{current.sunset}"></a></li>
+					<li class="list-group-item">UV Index: <a
+						th:text="*{current.uvIndex}"></a></li>
+					<li class="list-group-item">Clouds: <a
+						th:text="*{current.clouds}"></a> %
+					</li>
+					<li class="list-group-item">Visibility: <a
+						th:text="*{current.visibility}"></a> m
+					</li>
+					<li class="list-group-item">Dew Point: <a
+						th:text="*{current.dewPoint}"></a> &#176;F
+					</li>
+
+					<li class="list-group-item" th:object="${tide}">Tide Height (meters): <a
+							th:text="*{tideData.get(0).tideHeightInFt}"></a>
+					</li>
+				</ul>
+			</div>
+			<div class="col-md-6">
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item">Temperature: <a
+						th:text="*{current.temp}"></a> &#176;F
+					</li>
+					<li class="list-group-item">Feels Like: <a
+						th:text="*{current.tempFeelsLike}"></a> &#176;F
+					</li>
+					<li class="list-group-item">Weather Type: <a
+						th:text="*{current.weather.get(0).weatherType}"></a></li>
+					<li class="list-group-item">Weather Description: <a
+						th:text="*{current.weather.get(0).description}"></a></li>
+					<li class="list-group-item">Humidity: <a
+						th:text="*{current.humidity}"></a> %
+					</li>
+					<!-- <li class="list-group-item">Rain in Last Hour:   <a th:text="*{current.rain.oneHourOfRain}"></a> mm</li> -->
+					<li class="list-group-item">Pressure: <a
+						th:text="*{current.pressure}"></a> hPa
+					</li>
+					<li class="list-group-item">Wind Speed: <a
+						th:text="*{current.windSpeed}"></a> mph
+					</li>
+					<li class="list-group-item">Wind Gusts: <a
+						th:text="*{current.windGust}"></a> mph
+					</li>
+					<li class="list-group-item">Wind Dir: <a
+						th:text="*{current.windDirection}"></a> &#176;
+					</li>
+
+
+
+				</ul>
+			</div>
+		</div>
+
+		<!-- Google JS Map -->
+		<div id="map" style="height: 80%; width: 100%;"></div>
+
+	</div>
+	<!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+	<script
+		src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBwqdphXVO0I0JWWAbpMwUAPFrYV5TrlVc&callback=initMap"
+		async></script>
+	<script th:inline="javascript">
+
+      /*<![CDATA[*/
+	    
+         var latitude = /*[[${weatherData.lat}]]*/ 34.25;
+         var longitude = /*[[${weatherData.lon}]]*/ -137.20;
+       /*]]>*/ 
+       
+ function initMap() {
+    	  const myLatLng = { lat: latitude, lng: longitude };
+    	  const map = new google.maps.Map(document.getElementById("map"), {
+    	    zoom: 8,
+    	    center: myLatLng,
+    	  });
+    	  new google.maps.Marker({
+    	    position: myLatLng,
+    	    map,
+    	    title: "My Fishing Spot", //add the name of the fishing spot
+    	  });
+    	}      
+   </script>
+</body>
+</html>
