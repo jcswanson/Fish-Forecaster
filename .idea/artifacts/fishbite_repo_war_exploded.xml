@@ -5,7 +5,7 @@
       <element id="javaee-facet-resources" facet="fishbite-repo/web/Web" />
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
-          <element id="module-output" name="Fish-Forecaster" />
+          <element id="module-output" name="FISH4CAST" />
         </element>
       </element>
     </root>

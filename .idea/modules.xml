@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/Fish-Forecaster.iml" filepath="$PROJECT_DIR$/.idea/Fish-Forecaster.iml" />
-      <module fileurl="file://$PROJECT_DIR$/FishingRepo/FishForecaster.iml" filepath="$PROJECT_DIR$/FishingRepo/FishForecaster.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/FISH4CAST.iml" filepath="$PROJECT_DIR$/.idea/FISH4CAST.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Fish4Cast/Fish4Cast.iml" filepath="$PROJECT_DIR$/Fish4Cast/Fish4Cast.iml" />
     </modules>
   </component>
 </project>

@@ -5,8 +5,10 @@
       <list>
         <option value="$PROJECT_DIR$/FishingRepo/pom.xml" />
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/FishForecaster/pom.xml" />
+        <option value="$PROJECT_DIR$/Fish4Cast/pom.xml" />
       </list>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="zulu-1.8" project-jdk-type="JavaSDK" />
 </project>

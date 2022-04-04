@@ -7,18 +7,19 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="FishForecaster" />
-        <module name="Fish-Forecaster" />
+        <module name="Fish4Cast" />
+        <module name="FISH4CAST" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="Fish-Forecaster" target="8" />
-      <module name="FishForecaster" target="1.8" />
+    <bytecodeTargetLevel target="8">
+      <module name="FISH4CAST" target="11" />
+      <module name="Fish4Cast" target="11" />
+      <module name="FishForecaster" target="11" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="FishForecaster" options="-parameters" />
+      <module name="Fish4Cast" options="-parameters" />
     </option>
   </component>
 </project>
