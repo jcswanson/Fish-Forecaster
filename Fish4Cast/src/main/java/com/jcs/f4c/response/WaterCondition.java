@@ -9,20 +9,10 @@ import lombok.Setter;
 @NoArgsConstructor
 public class WaterCondition {
 
-    private double swellDirection;
-    private double swellHeight;
-    private double swellPeriod;
-    private double waterTemperature;
+    private SwellDirection swellDirection;
+    private SwellHeight swellHeight;
+    private WaterTemp waterTemperature;
 
 
-    @Override
-    public String toString() {
-        return "WaterCondition{" +
-                "swellDirection=" + swellDirection +
-                ", swellHeight=" + swellHeight +
-                ", swellPeriod=" + swellPeriod +
-                ", waterTemperature=" + waterTemperature +
-                 + '\'' +
-                '}';
-    }
+
 }

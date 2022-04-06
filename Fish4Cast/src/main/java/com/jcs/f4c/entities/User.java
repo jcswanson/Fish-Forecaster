@@ -1,12 +1,7 @@
 package com.jcs.f4c.entities;
 
-import com.jcs.f4c.security.Authority;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
 
 import javax.persistence.*;
@@ -20,27 +15,28 @@ import java.util.*;
 ////@RequiredArgsConstructor
 
 public class User implements Serializable {
+
+    private static final long serialVersionUID = 1L;
     //
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    private Integer uid;
+    private Long uid;
 
     private String cellphone;
     private String username;
     private String password;
     private String email;
-
-
-//    private List<Record> records;
-
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
-    private List<Authority> authorities;
-
-
+    private String role = "ROLE_USER";
+    @OneToMany(cascade = CascadeType.ALL,
+            mappedBy = "user", orphanRemoval = true)
+    private List<LocationRecord> locationRecords;
 
     public User() {
     }
-
+    public void addRecord(LocationRecord locationRecord){
+        locationRecord.setUser(this);
+        this.locationRecords.add(locationRecord);
+    }
 
 }

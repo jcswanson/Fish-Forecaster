@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head th:replace="layouts :: header"></head>
+<body>
+
+<!-- Navbar menu located in layouts -->
+<nav th:replace="layouts :: navbar"></nav>
+
+<div class="container container-margin">
+
+    <h1 class="page-title">Signup for FishForecast</h1>
+    <hr>
+    <form class="row g-3" th:action="@{/signupUser}" th:object="${user}" method="POST">
+        <!-- success message -->
+        <!--        <div th:if="${param.success}">-->
+        <!--            <div class="alert alert-info">You've successfully registered-->
+        <!--                to our awesome app!</div>-->
+        <!--        </div>-->
+        <div class="col-md-6">
+            <label for="username" class="form-label">Username</label>
+            <input type="text" th:field="*{username}" class="form-control" id="username" placeholder="Enter username" >
+        </div>
+        <div class="col-md-6">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" th:field="*{email}" class="form-control" id="email" placeholder="Enter email address">
+        </div>
+        <div class="col-4">
+            <label for="cellphone" class="form-label">Mobile Number</label>
+            <input type="text" th:field="*{cellphone}" class="form-control" id="cellphone" placeholder="(___)___-____" >
+        </div>
+        <div class="col-md-4">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" th:field="*{password}" class="form-control" id="password" placeholder="Enter password">
+        </div>
+        <div class="col-md-4">
+            <label for="confirmPassword" class="form-label">Confirm Password</label>
+            <input type="password"  class="form-control" id="confirmPassword" placeholder="Confirm password">
+        </div>
+        <hr>
+             <div class="col-12">
+                <a th:href="@{/}" class="form-check-label">Already Registered? Login Here!</a>
+            </div>
+
+        <div class="col-12">
+            <button type="submit" class="btn-dark btn-lg col-3" id="formButton">Signup</button>
+        </div>
+    </form>
+
+</div>
+
+
+</body>
+
+</html>

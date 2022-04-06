@@ -19,47 +19,10 @@
     <p>In fact we are building a model from everyone's reports in order to know what conditions the fish like in certain
         spots,
         so you know before leaving the dock or walking to the shore that the fish will be biting!!</p>
-    <a class="btn btn-primary btn-lg" href="#" role="button">Where Should I Fish?</a>
+    <a class="btn btn-primary btn-lg" th:href="@{/login}" role="button">Login</a>
+    <a class="btn btn-primary btn-lg" th:href="@{/signup}" role="button">Signup</a>
 </div>
-<div class="container">
-    <!-- Different Rover Buttons th:field="${}"-->
-    <form id="coordinates" method="get" th:action="@{/location/map}">
-        <div class="form-row">
-            <div class="col">
-                <label for="lat">Latitude </label>
-                <input class="form-control" id="lat" placeholder="Latitude" th:name="lat" type="text">
-            </div>
-            <div class="col">
-                <label for="lon">Longitude </label>
-                <input class="form-control" id="lon" placeholder="Longitude" th:name="lon" type="text">
-            </div>
-        </div>
-        <div class="form-row">
-            <div class="col-6">
-                <h6>What type of fishing?</h6>
-                <div class="custom-control custom-radio">
-                    <input class="custom-control-input" id="customRadio1" name="sportReprt" type="radio">
-                    <label class="custom-control-label" for="customRadio1">Personal Fishing</label>
-                </div>
-            </div>
 
-
-            <div class="col-6">
-                <div class="custom-control custom-radio">
-                    <input class="custom-control-input" id="customRadio2" name="commercialReport" type="radio">
-                    <label class="custom-control-label" for="customRadio2">Commercial Fishing</label>
-                </div>
-            </div>
-        </div>
-        <div class="form-row">
-            <div class="col-6">
-                <button class="btn btn btn-dark" id="locationForecast" type="submit">Fill Out a Fishing Report
-                </button>
-            </div>
-        </div>
-
-    </form>
-</div>
 
 </body>
 </html>

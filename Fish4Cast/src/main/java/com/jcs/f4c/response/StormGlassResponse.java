@@ -15,7 +15,7 @@ import java.util.List;
 public class StormGlassResponse {
 
     @JsonProperty("hours")
-    private WaterCondition waterConditionHour;
+    private List<WaterCondition> waterConditionHours;
     @JsonProperty("data")
     private List<Tide> tideData = new ArrayList<>();
 //    private String source = "sg";
@@ -24,7 +24,7 @@ public class StormGlassResponse {
     @Override
     public String toString() {
         return "StormGlassResponse{" +
-                "waterConditionHour=" + waterConditionHour +
+                "waterConditionHours=" + waterConditionHours +
                 ", tideData=" + tideData +
                 '}';
     }

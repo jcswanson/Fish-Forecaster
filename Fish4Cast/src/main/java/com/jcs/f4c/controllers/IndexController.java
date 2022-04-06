@@ -10,10 +10,8 @@ import com.jcs.f4c.service.OpenWeatherApiService;
 @Controller
 public class IndexController {
 
-	@Autowired
-	private OpenWeatherApiService weatherService;
-	
-	@GetMapping("/home")
+
+	@GetMapping("/")
 	public String getHomeView() {
 		
 		return "home/index";

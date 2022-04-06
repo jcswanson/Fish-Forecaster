@@ -3,7 +3,7 @@ package com.jcs.f4c.service;
 import com.jcs.f4c.repository.UserRepository;
 import com.jcs.f4c.entities.User;
 
-import com.jcs.f4c.security.CustomUserDetails;
+import com.jcs.f4c.entities.CustomUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -22,27 +22,19 @@ public class JpaUserDetailsService implements UserDetailsService {
     private UserRepository userRepository;
 
     public User getUserByPrincipal(Principal principal){
-        Optional<User> user = userRepository.findUserByUsername(principal.getName());
+        Optional<User> user = userRepository.findByUsername(principal.getName());
         user.orElseThrow(() -> new UsernameNotFoundException( "User not found."));
         return user.get();
 
     }
-// LOOK HERE
+
     @Override
-    public CustomUserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Supplier<UsernameNotFoundException> s =
-                () -> new UsernameNotFoundException("Problem Authenticating User!");
-
-        User user = userRepository
-                .findUserByUsername(username)
-                .orElseThrow(s);
-        return new CustomUserDetails(user);
-
-        //        Optional<User> user = userRepo.findByUsername(username);
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        Optional<User> user = userRepository.findByUsername(username);
 //        user.orElseThrow(() -> new UsernameNotFoundException(username + " not found."));
-//
-//        return user.map(User::new).get();
-
+        return Optional.ofNullable(user).orElseThrow(()->new UsernameNotFoundException("Username Not Found"))
+                .map(CustomUserDetails::new).get();
+//        return user.map(CustomUserDetails::new).get();
 
     }
 

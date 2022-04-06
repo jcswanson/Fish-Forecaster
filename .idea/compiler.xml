@@ -13,8 +13,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel target="8">
       <module name="FISH4CAST" target="11" />
-      <module name="Fish4Cast" target="11" />
-      <module name="FishForecaster" target="11" />
+      <module name="Fish4Cast" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">

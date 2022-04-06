@@ -17,12 +17,14 @@ public class StormGlassApiService {
 
         // I need to use TimeFormatter to get the hour out of 24 that the current time is in
         String baseStormGlassConditionsUrl = "https://api.stormglass.io/v2/weather/point?lat="+latitude+"&lng="+longitude+
-                "&params=waterTemperature,swellHeight,swellPeriod,swellDirection&source=sg";
+                "&params=waterTemperature,swellHeight,swellPeriod,swellDirection&start=2022-02-24 00:30&end=2022-02-24 00:30&source=sg";
 
-        ResponseEntity<StormGlassResponse> response = restTemplate.getForEntity(baseStormGlassConditionsUrl, StormGlassResponse.class);
-        MediaType contentType = response.getHeaders().getContentType();
-        HttpStatus statusCode = response.getStatusCode();
-        return null;
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Authorization", "dfef7f20-c7ea-11eb-862d-0242ac130002-dfef7fa2-c7ea-11eb-862d-0242ac130002");
+        HttpEntity<String> httpEntity = new HttpEntity<>("some body", headers);
+        ResponseEntity<StormGlassResponse> response = restTemplate.exchange(baseStormGlassConditionsUrl, HttpMethod.GET, httpEntity, StormGlassResponse.class);
+        System.out.println(response.getBody()+"\n"+response.getHeaders());
+        return response.getBody();
     }
 
     public StormGlassResponse getTide(Double latitude, Double longitude){

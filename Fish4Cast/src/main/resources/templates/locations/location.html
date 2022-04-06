@@ -11,7 +11,7 @@
 <body>
 
 	<!-- Navbar menu located in layouts -->
-	<nav th:replace="layouts :: navbar"></nav>
+	<nav th:replace="layouts :: user-navbar"></nav>
 
 <!--	Google JS Map Layout-->
 	<div id="map" style="height: 80%; width: 80%; align-self: center;"></div>
@@ -25,8 +25,8 @@
 
 		/*<![CDATA[*/
 
-		var latitude = /*[[${weatherData.lat}]]*/ 34.25;
-		var longitude = /*[[${weatherData.lon}]]*/ -137.20;
+		var latitude = /*[[${locationRecord.lat}]]*/ 34.25;
+		var longitude = /*[[${locationRecord.lng}]]*/ -137.20;
 		/*]]>*/
 
 		function initMap() {
@@ -51,34 +51,28 @@
 		<hr>
 		<br>
 		<!-- Different Rover Buttons th:field="${}"-->
-		<form method="post" th:action="@{/location/report}" id="fishReport">
-			<label for="gps-coordinates">Report's GPS Coordinates and Region</label>
-			<input class="form-control" type="text" id="gps-coordinates" placeholder="Latitude: XX.XX, Longitude: XXX.XX, Region: XXXXXX" readonly>
+		<form method="post" th:action="@{/location/saveRecord}" th:object="${locationRecord}" id="fishReport">
+<!--			<label for="gps-coordinates">Report's GPS Coordinates and Region</label>-->
+<!--			<input class="form-control" type="text" id="gps-coordinates" placeholder="Latitude: XX.XX, Longitude: XXX.XX, Region: XXXXXX" readonly>-->
 
 			<div class="form-row">
 
 					<div class="col-3 my-1">
 						<label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">How Many Fish Did You Catch?</label>
-						<select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-							<option selected># of Fish...</option>
-							<option value="1">One</option>
-							<option value="2">Two</option>
-							<option value="3">Three</option>
-							<option value="4">Four</option>
-							<option value="5">Five</option>
-							<option value="6">More Than Five!</option>
-						</select>
+						<input class="mr-sm-2" th:field="*{catchNumber}" id="inlineFormCustomSelect">
+
 					</div>
 					<div class="col-auto my-1">
 						<div class="custom-control custom-checkbox mr-sm-2">
-							<input type="checkbox" class="custom-control-input" id="customControlAutosizing">
-							<label class="custom-control-label" for="customControlAutosizing">Remember my preference</label>
+<!--							<input type="checkbox" class="custom-control-input" id="customControlAutosizing">-->
+<!--							<label class="custom-control-label" for="customControlAutosizing">Remember my preference</label>-->
 						</div>
 					</div>
 				<div class="col">
 					<div class="form-floating">
-						<textarea class="form-control" placeholder="Leave a description here of the water visibility/conditions and fish/bait seen..." id="floatingTextarea2" style="height: 120px"></textarea>
 						<label for="floatingTextarea2">Observation Comments</label>
+						<textarea class="form-control" th:field="*{observations}" placeholder="Leave a description here of the water visibility/conditions and fish/bait seen..." id="floatingTextarea2" style="height: 120px"></textarea>
+
 					</div>
 				</div>
 				<div class="col">
@@ -88,76 +82,76 @@
 		</form>
 	</div>
 
-<div class="container" th:object="${weatherData}">
+<!--<div class="container" th:object="${locationRecord}">-->
 
-	<div class="alert alert-danger" role="alert" th:each=" alert : *{alerts}">
-		<span th:utext = "${alert.senderName}"> NO ALERTS</span>
-		<span th:utext = "${alert.event}"> </span>
-		<span th:utext = "${alert.startTime}"> </span>
-		<span th:utext = "${alert.endTime}"> </span>
-		<span th:utext = "${alert.description}"> </span>
-	</div>
-		<div class="row" >
-			<div class="col-md-3">
-				<ul class="list-group list-group-flush">
-					<li class="list-group-item">Latitude: <a th:text="*{lat}"
-						id="lat"></a></li>
-					<li class="list-group-item">Longitude: <a th:text="*{lon}"
-						id="lon"></a></li>
-					<li class="list-group-item">Timezone: <a th:text="*{timezone}"></a></li>
+<!--&lt;!&ndash;	<div class="alert alert-danger" role="alert" th:each=" alert : *{alerts}">&ndash;&gt;-->
+<!--&lt;!&ndash;		<span th:utext = "${alert.senderName}"> NO ALERTS</span>&ndash;&gt;-->
+<!--&lt;!&ndash;		<span th:utext = "${alert.event}"> </span>&ndash;&gt;-->
+<!--&lt;!&ndash;		<span th:utext = "${alert.startTime}"> </span>&ndash;&gt;-->
+<!--&lt;!&ndash;		<span th:utext = "${alert.endTime}"> </span>&ndash;&gt;-->
+<!--&lt;!&ndash;		<span th:utext = "${alert.description}"> </span>&ndash;&gt;-->
+<!--&lt;!&ndash;	</div>&ndash;&gt;-->
+<!--		<div class="row" >-->
+<!--			<div class="col-md-3">-->
+<!--				<ul class="list-group list-group-flush">-->
+<!--					<li class="list-group-item">Latitude: <a th:text="*{lat}"-->
+<!--						id="lat"></a></li>-->
+<!--					<li class="list-group-item">Longitude: <a th:text="*{lng}"-->
+<!--						id="lon"></a></li>-->
+<!--&lt;!&ndash;					<li class="list-group-item">Timezone: <a th:text="*{timezone}"></a></li>&ndash;&gt;-->
 
-					<li class="list-group-item">Sunrise: <a
-						th:text="*{current.sunrise}"></a></li>
-					<li class="list-group-item">Sunset: <a
-						th:text="*{current.sunset}"></a></li>
-					<li class="list-group-item">UV Index: <a
-						th:text="*{current.uvIndex}"></a></li>
-					<li class="list-group-item">Clouds: <a
-						th:text="*{current.clouds}"></a> %
-					</li>
-					<li class="list-group-item">Visibility: <a
-						th:text="*{current.visibility}"></a> m
-					</li>
-					<li class="list-group-item">Dew Point: <a
-						th:text="*{current.dewPoint}"></a> &#176;F
-					</li>
+<!--&lt;!&ndash;					<li class="list-group-item">Sunrise: <a&ndash;&gt;-->
+<!--&lt;!&ndash;						th:text="*{current.sunrise}"></a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;					<li class="list-group-item">Sunset: <a&ndash;&gt;-->
+<!--&lt;!&ndash;						th:text="*{current.sunset}"></a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;					<li class="list-group-item">UV Index: <a&ndash;&gt;-->
+<!--&lt;!&ndash;						th:text="*{current.uvIndex}"></a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;					<li class="list-group-item">Clouds: <a&ndash;&gt;-->
+<!--&lt;!&ndash;						th:text="*{current.clouds}"></a> %&ndash;&gt;-->
+<!--&lt;!&ndash;					</li>&ndash;&gt;-->
+<!--&lt;!&ndash;					<li class="list-group-item">Visibility: <a&ndash;&gt;-->
+<!--&lt;!&ndash;						th:text="*{current.visibility}"></a> m&ndash;&gt;-->
+<!--&lt;!&ndash;					</li>&ndash;&gt;-->
+<!--&lt;!&ndash;					<li class="list-group-item">Dew Point: <a&ndash;&gt;-->
+<!--&lt;!&ndash;						th:text="*{current.dewPoint}"></a> &#176;F&ndash;&gt;-->
+<!--&lt;!&ndash;					</li>&ndash;&gt;-->
 
-					<li class="list-group-item" th:object="${tide}">Tide Height (meters): <a
-							th:text="*{tideData.get(0).tideHeightInFt}"></a>
-					</li>
-				</ul>
-			</div>
-			<div class="col-md-3">
-				<ul class="list-group list-group-flush">
-					<li class="list-group-item">Temperature: <a
-						th:text="*{current.temp}"></a> &#176;F
-					</li>
-					<li class="list-group-item">Feels Like: <a
-						th:text="*{current.tempFeelsLike}"></a> &#176;F
-					</li>
-					<li class="list-group-item">Weather Type: <a
-						th:text="*{current.weather.get(0).weatherType}"></a></li>
-					<li class="list-group-item">Weather Description: <a
-						th:text="*{current.weather.get(0).description}"></a></li>
-					<li class="list-group-item">Humidity: <a
-						th:text="*{current.humidity}"></a> %
-					</li>
-					<!-- <li class="list-group-item">Rain in Last Hour:   <a th:text="*{current.rain.oneHourOfRain}"></a> mm</li> -->
-					<li class="list-group-item">Pressure: <a
-						th:text="*{current.pressure}"></a> hPa
-					</li>
-					<li class="list-group-item">Wind Speed: <a
-						th:text="*{current.windSpeed}"></a> mph
-					</li>
-					<li class="list-group-item">Wind Gusts: <a
-						th:text="*{current.windGust}"></a> mph
-					</li>
-					<li class="list-group-item">Wind Dir: <a
-						th:text="*{current.windDirection}"></a> &#176;
-					</li>
-				</ul>
-			</div>
-		</div>
+<!--					<li class="list-group-item" th:object="${tide}">Tide Height (meters): <a-->
+<!--							th:text="*{tide}"></a>-->
+<!--					</li>-->
+<!--				</ul>-->
+<!--			</div>-->
+<!--			<div class="col-md-3">-->
+<!--				<ul class="list-group list-group-flush">-->
+<!--					<li class="list-group-item">Temperature: <a-->
+<!--						th:text="*{airTemp}"></a> &#176;F-->
+<!--					</li>-->
+<!--					<li class="list-group-item">Water Temp: <a-->
+<!--						th:text="*{waterTemp}"></a> &#176;F-->
+<!--					</li>-->
+<!--&lt;!&ndash;					<li class="list-group-item">Weather Type: <a&ndash;&gt;-->
+<!--&lt;!&ndash;						th:text="*{current.weather.get(0).weatherType}"></a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;					<li class="list-group-item">Weather Description: <a&ndash;&gt;-->
+<!--&lt;!&ndash;						th:text="*{current.weather.get(0).description}"></a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;					<li class="list-group-item">Humidity: <a&ndash;&gt;-->
+<!--&lt;!&ndash;						th:text="*{current.humidity}"></a> %&ndash;&gt;-->
+<!--&lt;!&ndash;					</li>&ndash;&gt;-->
+<!--					&lt;!&ndash; <li class="list-group-item">Rain in Last Hour:   <a th:text="*{current.rain.oneHourOfRain}"></a> mm</li> &ndash;&gt;-->
+<!--					<li class="list-group-item">Wave Height: <a-->
+<!--						th:text="*{waveHeight}"></a> hPa-->
+<!--					</li>-->
+<!--					<li class="list-group-item">Wave Dir: <a-->
+<!--						th:text="*{waveDirection}"></a> mph-->
+<!--					</li>-->
+<!--&lt;!&ndash;					<li class="list-group-item">Wind Gusts: <a&ndash;&gt;-->
+<!--&lt;!&ndash;						th:text="*{current.windGust}"></a> mph&ndash;&gt;-->
+<!--&lt;!&ndash;					</li>&ndash;&gt;-->
+<!--&lt;!&ndash;					<li class="list-group-item">Wind Dir: <a&ndash;&gt;-->
+<!--&lt;!&ndash;						th:text="*{current.windDirection}"></a> &#176;&ndash;&gt;-->
+<!--&lt;!&ndash;					</li>&ndash;&gt;-->
+<!--				</ul>-->
+<!--			</div>-->
+<!--		</div>-->
 
 
 

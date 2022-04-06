@@ -6,13 +6,27 @@
 <!-- Navbar menu located in layouts -->
 <nav th:replace="layouts :: navbar"></nav>
 
-<div class="container">
+<div  class="container " style="display: flex; justify-content: center; align-items: center; height: 100vh">
+<!--    https://raw.githubusercontent.com/springhow/spring-boot-security-custom-form-login/master/src/main/resources/templates/login.html-->
+    <form class="form-signin" th:action="@{/loginUser}" method="post">
 
+        <h2 class="form-signin-heading">Please login</h2>
+        <p>
+            <label for="username" class="sr-only">Username</label>
+            <input type="text" id="username" name="username" class="form-control"
+                   placeholder="Username" required autofocus/>
+        </p>
+        <p>
+            <label for="password" class="sr-only">Password</label>
+            <input type="password" id="password" name="password" class="form-control"
+                   placeholder="Password" required autofocus/>
+        </p>
 
-
+        <button class="btn btn-outline-success btn-lg col-12 btn-block" type="submit">Login</button><br/><br>
+        <a th:href="@{/signup}" class="btn btn-outline-success btn-lg col-12 btn-block ">Signup</a>
+    </form>
 
 </div>
-
 
 </body>
 
