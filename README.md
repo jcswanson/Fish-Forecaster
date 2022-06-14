@@ -7,4 +7,3 @@ Project is interrupted by jcswanson.com development, so this project is 1/2 done
 ### Utilized Open Source APIs: 
 - StormGlass: used to gather water temperature, wave height, current direction, tide, and biochemical conditions
 - Google Geolocation: places a map with a marker when a user enters his/her's fishing location GPS coordinates 
-- OpenWeather: used to gather atmospheric weather data
